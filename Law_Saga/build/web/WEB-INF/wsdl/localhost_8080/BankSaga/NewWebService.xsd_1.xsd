@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.2-hudson-740-. --><xs:schema xmlns:tns="http://services.bank.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://services.bank.com/">
+
+<xs:element name="charge" type="tns:charge" />
+
+<xs:element name="chargeResponse" type="tns:chargeResponse" />
+
+<xs:element name="getAllCreditCard" type="tns:getAllCreditCard" />
+
+<xs:element name="getAllCreditCardResponse" type="tns:getAllCreditCardResponse" />
+
+<xs:element name="getAmount" type="tns:getAmount" />
+
+<xs:element name="getAmountResponse" type="tns:getAmountResponse" />
+
+<xs:element name="isExists" type="tns:isExists" />
+
+<xs:element name="isExistsResponse" type="tns:isExistsResponse" />
+
+<xs:element name="isValid" type="tns:isValid" />
+
+<xs:element name="isValidResponse" type="tns:isValidResponse" />
+
+<xs:complexType name="charge">
+<xs:sequence>
+<xs:element name="cardNumber" type="xs:string" minOccurs="0" />
+<xs:element name="amount" type="xs:double" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="chargeResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="isValid">
+<xs:sequence>
+<xs:element name="cardNumber" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="isValidResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="isExists">
+<xs:sequence>
+<xs:element name="cardNumber" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="isExistsResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getAmount">
+<xs:sequence>
+<xs:element name="cardNumber" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getAmountResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:double" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getAllCreditCard">
+<xs:sequence />
+</xs:complexType>
+
+<xs:complexType name="getAllCreditCardResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:CreditCard" minOccurs="0" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="CreditCard">
+<xs:sequence>
+<xs:element name="numCard" type="xs:string" />
+<xs:element name="isActive" type="xs:boolean" />
+<xs:element name="amount" type="xs:double" />
+<xs:element name="grade" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
