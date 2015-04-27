@@ -42,7 +42,7 @@
                 </p>
                 <p><td><input type="hidden" name="date" value='<%= new java.util.Date()%>'></td></p>
                 <p class="contact-submit">
-                    <input type="submit" value="Cari">
+                    <input type="submit" value="Beli">
                 </p>
             </fieldset>
         </form>

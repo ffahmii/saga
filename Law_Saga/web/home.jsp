@@ -49,7 +49,7 @@
             if (checker != null && checker.equals("loggedIn")) {
         %>
         <font color="red">You Already Logged In</font>
-    <%
+        <%
             }
             Database d = new Database();
             ArrayList<User> u = d.getUserDetails(userName);
@@ -77,33 +77,40 @@
                     <a id="container" style="width:50%; height:400px;"></a>
                     <a class="widget-list-link">
                         <%
-                            double [] sum = new double [gameId.size()];
+                            double[] sum = new double[gameId.size()];
+                            int i = 0;
                             for (ArrayList<BuyerLog> arrLog : daftar) {
-                                out.print("Nama game = " + arrLog.get(0).getGameName());
+////                                out.print("Nama game = " + arrLog.get(0).getGameName());
+//                                out.print("<p class='submit'><button>"+d.getGameName(arrLog.get(0).getGameName()+"</button></p>"));
+                                out.print("<button class='submit' onClick='$(\"#" + i + "\").slideToggle()'>View details " 
+                                        + d.getGameName(arrLog.get(0).getGameName()) + "</button>");
+                                out.print("<div hidden id='" + i + "'>");
                                 for (BuyerLog usLog : arrLog) {
-                                    out.print("<span>Pembelian untuk item = " + usLog.getItemName() + "</span>");
-                                    out.print("<span>Waktu pembelian = " + usLog.getTime() + "</span>");
-                                    out.print("<span>Jumlah harga = " + usLog.getHarga() + "</span><br>");
-                                    for (int j = 0; j < gameId.size(); j++){
-                                        if (usLog.getGameName().equals(gameId.get(j))){
-                                            sum[j]+= usLog.getHarga();
+                                    out.print("<br>Pembelian untuk item = " + usLog.getItemName());
+                                    out.print("<br>Waktu pembelian = " + usLog.getTime());
+                                    out.print("<br>Jumlah harga = " + usLog.getHarga() + "<br>");
+                                    for (int j = 0; j < gameId.size(); j++) {
+                                        if (usLog.getGameName().equals(gameId.get(j))) {
+                                            sum[j] += usLog.getHarga();
                                         }
                                     }
                                 }
+                                out.print("</div><br><br>");
+                                i++;
                             }
                             String categories = "[";
-                            for (int j = 0; j < gameId.size(); j++){
-                                if (j == gameId.size()-1) {
+                            for (int j = 0; j < gameId.size(); j++) {
+                                if (j == gameId.size() - 1) {
                                     categories += "'" + d.getGameName(gameId.get(j)) + "'";
                                 } else {
-                                    categories+="'"+ d.getGameName(gameId.get(j)) +"',";
+                                    categories += "'" + d.getGameName(gameId.get(j)) + "',";
                                 }
                             }
                             categories += "]";
                             String data = "[";
-                            for (int j = 0; j < sum.length; j++){
-                                if (j == sum.length-1) {
-                                    data +=  sum[j];
+                            for (int j = 0; j < sum.length; j++) {
+                                if (j == sum.length - 1) {
+                                    data += sum[j];
                                 } else {
                                     data += sum[j] + ",";
                                 }
@@ -112,7 +119,7 @@
                         %>
                     </a>
                     <script>
-                         $(function () {
+                        $(function () {
                             $('#container').highcharts({
                                 chart: {
                                     type: 'bar'
@@ -130,7 +137,7 @@
                                 },
                                 series: [{
                                         name: '<%= ud.getUsername()%>',
-                                        data: <%= data %>
+                                        data: <%= data%>
                                     }]
                             });
                         });
@@ -138,7 +145,7 @@
                 </li>
             </ol>
 
-        
+
             <ol class="widget-list" id="akun">
                 <li>
                     <a class="widget-list-link">
@@ -157,11 +164,11 @@
                     <a href="#History" class="widget-tab-link">History</a>
                 <li class="widget-tab">
                     <a href="#GamePurchases" class="widget-tab-link">Game Purchases</a>
-              
+
                 <li class="widget-tab">
                     <a href="#akun" class="widget-tab-link">Account Details </a>
             </ul>
-      
+
             <CENTER><form action="<%=response.encodeURL("editProfile.jsp")%>" method="post">
                     <p class="submit" ><input type="submit" name="EditProfile" value="Edit Profile"></p>
                 </form>
