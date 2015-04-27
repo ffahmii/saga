@@ -78,25 +78,32 @@
                     <a class="widget-list-link">
                         <%
                             double [] sum = new double [gameId.size()];
+                            int i = 0;
                             for (ArrayList<BuyerLog> arrLog : daftar) {
-                                out.print("Nama game = " + arrLog.get(0).getGameName());
+////                                out.print("Nama game = " + arrLog.get(0).getGameName());
+//                                out.print("<p class='submit'><button>"+d.getGameName(arrLog.get(0).getGameName()+"</button></p>"));
+                                out.print("<button class='submit' onClick='$(\"#" + i + "\").slideToggle()'>View details " 
+                                        + d.getGameName(arrLog.get(0).getGameName()) + "</button>");
+                                out.print("<div hidden id='" + i + "'>");
                                 for (BuyerLog usLog : arrLog) {
-                                    out.print("<span>Pembelian untuk item = " + usLog.getItemName() + "</span>");
-                                    out.print("<span>Waktu pembelian = " + usLog.getTime() + "</span>");
-                                    out.print("<span>Jumlah harga = " + usLog.getHarga() + "</span><br>");
-                                    for (int j = 0; j < gameId.size(); j++){
-                                        if (usLog.getGameName().equals(gameId.get(j))){
-                                            sum[j]+= usLog.getHarga();
+                                    out.print("<br>Pembelian untuk item = " + usLog.getItemName());
+                                    out.print("<br>Waktu pembelian = " + usLog.getTime());
+                                    out.print("<br>Jumlah harga = " + usLog.getHarga() + "<br>");
+                                    for (int j = 0; j < gameId.size(); j++) {
+                                        if (usLog.getGameName().equals(gameId.get(j))) {
+                                            sum[j] += usLog.getHarga();
                                         }
                                     }
                                 }
+                                out.print("</div><br><br>");
+                                i++;
                             }
                             String categories = "[";
                             for (int j = 0; j < gameId.size(); j++){
-                                if (j == gameId.size()-1) {
+                                if (j == gameId.size() - 1) {
                                     categories += "'" + d.getGameName(gameId.get(j)) + "'";
                                 } else {
-                                    categories+="'"+ d.getGameName(gameId.get(j)) +"',";
+                                    categories += "'" + d.getGameName(gameId.get(j)) + "',";
                                 }
                             }
                             categories += "]";
@@ -109,6 +116,8 @@
                                 }
                             }
                             data += "]";
+//                            out.print(categories);
+//                            out.print(data);
                         %>
                     </a>
                     <script>

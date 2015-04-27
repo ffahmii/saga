@@ -49,7 +49,6 @@ public class pembelian extends HttpServlet {
         SimpleDateFormat dmyFormat = new SimpleDateFormat("yyyy-MM-dd");
         String date = dmyFormat.format(myDate) + " " + hours+":"+minutes+":"+seconds;
         Database db = new Database();
-        out.print("<br>Charge to bank = " +db.chargeCard(idGame, username, amount));
         out.print("Add to log user  = " + db.addToLogBuyer(username, idGame, date, item, amount));
         out.print("<br>Add to log client  = " + db.addToLogClient(idGame, username));
         out.print("<br>Charge to bank = " +db.chargeCard(idGame, username, amount));

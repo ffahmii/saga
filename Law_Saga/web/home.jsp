@@ -49,7 +49,7 @@
             if (checker != null && checker.equals("loggedIn")) {
         %>
         <font color="red">You Already Logged In</font>
-        <%
+    <%
             }
             Database d = new Database();
             ArrayList<User> u = d.getUserDetails(userName);
@@ -77,7 +77,7 @@
                     <a id="container" style="width:50%; height:400px;"></a>
                     <a class="widget-list-link">
                         <%
-                            double[] sum = new double[gameId.size()];
+                            double [] sum = new double [gameId.size()];
                             int i = 0;
                             for (ArrayList<BuyerLog> arrLog : daftar) {
 ////                                out.print("Nama game = " + arrLog.get(0).getGameName());
@@ -99,7 +99,7 @@
                                 i++;
                             }
                             String categories = "[";
-                            for (int j = 0; j < gameId.size(); j++) {
+                            for (int j = 0; j < gameId.size(); j++){
                                 if (j == gameId.size() - 1) {
                                     categories += "'" + d.getGameName(gameId.get(j)) + "'";
                                 } else {
@@ -108,18 +108,20 @@
                             }
                             categories += "]";
                             String data = "[";
-                            for (int j = 0; j < sum.length; j++) {
-                                if (j == sum.length - 1) {
-                                    data += sum[j];
+                            for (int j = 0; j < sum.length; j++){
+                                if (j == sum.length-1) {
+                                    data +=  sum[j];
                                 } else {
                                     data += sum[j] + ",";
                                 }
                             }
                             data += "]";
+//                            out.print(categories);
+//                            out.print(data);
                         %>
                     </a>
                     <script>
-                        $(function () {
+                         $(function () {
                             $('#container').highcharts({
                                 chart: {
                                     type: 'bar'
@@ -137,7 +139,7 @@
                                 },
                                 series: [{
                                         name: '<%= ud.getUsername()%>',
-                                        data: <%= data%>
+                                        data: <%= data %>
                                     }]
                             });
                         });
@@ -145,7 +147,7 @@
                 </li>
             </ol>
 
-
+        
             <ol class="widget-list" id="akun">
                 <li>
                     <a class="widget-list-link">
@@ -164,11 +166,11 @@
                     <a href="#History" class="widget-tab-link">History</a>
                 <li class="widget-tab">
                     <a href="#GamePurchases" class="widget-tab-link">Game Purchases</a>
-
+              
                 <li class="widget-tab">
                     <a href="#akun" class="widget-tab-link">Account Details </a>
             </ul>
-
+      
             <CENTER><form action="<%=response.encodeURL("editProfile.jsp")%>" method="post">
                     <p class="submit" ><input type="submit" name="EditProfile" value="Edit Profile"></p>
                 </form>

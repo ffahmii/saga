@@ -65,7 +65,6 @@ public class Database {
             }
         }
     }
-    
     public String getGameName(String idGame){
         String query = "SELECT game_name from saga_client where game_id='"+idGame+"'";
         String result = "";
