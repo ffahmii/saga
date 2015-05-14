@@ -2,6 +2,6 @@
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
     <system systemId="http://localhost:8080/BankSaga/NewWebService?wsdl" uri="src/conf/xml-resources/web-service-references/NewWebService/wsdl/localhost_8080/BankSaga/NewWebService.wsdl"/>
     <system systemId="http://localhost:8080/BankSaga/NewWebService?xsd=1" uri="src/conf/xml-resources/web-service-references/NewWebService/wsdl/localhost_8080/BankSaga/NewWebService.xsd_1.xsd"/>
-    <system systemId="http://localhost:8080/BankSaga/BankWebServices?wsdl" uri="src/conf/xml-resources/web-service-references/BankWebServices/wsdl/localhost_8080/BankSaga/BankWebServices.wsdl"/>
-    <system systemId="http://localhost:8080/BankSaga/BankWebServices?xsd=1" uri="src/conf/xml-resources/web-service-references/BankWebServices/wsdl/localhost_8080/BankSaga/BankWebServices.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/BankSaga/BankWebServices?wsdl" uri="wsdl/localhost_8080/BankSaga/BankWebServices.wsdl"/>
+    <system systemId="http://localhost:8080/BankSaga/BankWebServices?xsd=1" uri="wsdl/localhost_8080/BankSaga/BankWebServices.xsd_1.xsd"/>
 </catalog>

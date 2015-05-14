@@ -6,7 +6,7 @@
 
 package com.saga.handler;
 
-import com.saga.Database;
+import com.saga.DBSaga_User;
 import com.saga.User;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -37,7 +37,7 @@ public class ProfileServlet extends HttpServlet{
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	Database db = new Database();
+    	DBSaga_User db = new DBSaga_User();
         User newUser = new User();
         newUser.setUsername(request.getParameter("username"));
         newUser.setAlamat(request.getParameter("alamat"));

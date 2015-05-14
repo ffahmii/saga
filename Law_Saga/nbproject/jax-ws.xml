@@ -6,10 +6,10 @@
     </service>
   </services>
   <clients>
-    <client name="NewWebService">
-      <wsdl-url>http://localhost:8080/BankSaga/NewWebService?wsdl</wsdl-url>
-      <local-wsdl-file>localhost_8080/BankSaga/NewWebService.wsdl</local-wsdl-file>
-      <package-name>com.bank.services</package-name>
+    <client name="BankWebServices">
+      <wsdl-url>http://localhost:8080/BankSaga/BankWebServices?wsdl</wsdl-url>
+      <local-wsdl-file>localhost_8080/BankSaga/BankWebServices.wsdl</local-wsdl-file>
+      <package-name forceReplace="true">com.saga.bank.services</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
         <wsimport-option>
@@ -26,7 +26,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://localhost:8080/BankSaga/NewWebService?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://localhost:8080/BankSaga/BankWebServices?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
@@ -35,6 +35,10 @@
         <wsimport-option>
           <wsimport-option-name>xendorsed</wsimport-option-name>
           <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>package</wsimport-option-name>
+          <wsimport-option-value>com.saga.bank.services</wsimport-option-value>
         </wsimport-option>
       </wsimport-options>
     </client>

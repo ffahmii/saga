@@ -43,21 +43,21 @@
             <isset property="conf.dir"/>
         </condition>
     </target>
-    <target name="wsimport-client-NewWebService" depends="wsimport-init">
-        <mkdir dir="${build.generated.dir}/jax-wsCache/NewWebService"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/NewWebService" destdir="${build.generated.dir}/jax-wsCache/NewWebService" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/NewWebService/wsdl/localhost_8080/BankSaga/NewWebService.wsdl" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/BankSaga/NewWebService?wsdl" xnocompile="true" xendorsed="true">
-            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/NewWebService/wsdl/localhost_8080/BankSaga/NewWebService.wsdl"/>
-            <produces dir="${build.generated.dir}/jax-wsCache/NewWebService"/>
+    <target name="wsimport-client-BankWebServices" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/BankWebServices"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/BankWebServices" destdir="${build.generated.dir}/jax-wsCache/BankWebServices" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/BankWebServices/wsdl/localhost_8080/BankSaga/BankWebServices.wsdl" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/BankSaga/BankWebServices?wsdl" xnocompile="true" xendorsed="true" package="com.saga.bank.services">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/BankWebServices/wsdl/localhost_8080/BankSaga/BankWebServices.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/BankWebServices"/>
         </wsimport>
         <copy todir="${build.generated.sources.dir}/jax-ws">
-            <fileset dir="${build.generated.dir}/jax-wsCache/NewWebService">
+            <fileset dir="${build.generated.dir}/jax-wsCache/BankWebServices">
                 <include name="**/*.java"/>
             </fileset>
         </copy>
     </target>
-    <target name="wsimport-client-clean-NewWebService" depends="-init-project">
-        <delete dir="${build.generated.sources.dir}/jax-ws/com/bank/services"/>
-        <delete dir="${build.generated.dir}/jax-wsCache/NewWebService"/>
+    <target name="wsimport-client-clean-BankWebServices" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/com/saga/bank/services"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/BankWebServices"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-NewWebService"/>
+    <target name="wsimport-client-generate" depends="wsimport-client-BankWebServices"/>
 </project>

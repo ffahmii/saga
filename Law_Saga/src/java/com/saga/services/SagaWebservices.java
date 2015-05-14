@@ -5,7 +5,8 @@
  */
 package com.saga.services;
 
-import com.saga.Database;
+import com.saga.DBSaga_Client;
+import com.saga.DBSaga_User;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -21,9 +22,9 @@ public class SagaWebservices {
      * Web service operation
      */
     @WebMethod(operationName = "charge")
-    public boolean charge(@WebParam(name = "gameId") String gameId, @WebParam(name = "cardNumber") String cardNumber, @WebParam(name = "amount") double amount) {
-        Database db = new Database();
-        return db.chargeCard(gameId, cardNumber, amount);
+    public boolean charge(@WebParam(name = "gameId") String gameId, @WebParam(name = "username") String username, @WebParam(name = "amount") double amount) {
+        DBSaga_Client db = new DBSaga_Client();
+        return db.chargeCard(gameId, username, amount);
     }
 
     /**
@@ -31,7 +32,7 @@ public class SagaWebservices {
      */
     @WebMethod(operationName = "getAmount")
     public Double getAmount(@WebParam(name = "username") String username) {
-        Database db = new Database();
+        DBSaga_User db = new DBSaga_User();
         return db.getAmount(username);
     }
     

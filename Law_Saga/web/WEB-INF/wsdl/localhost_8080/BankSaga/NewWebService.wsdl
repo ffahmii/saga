@@ -16,17 +16,17 @@
 <message name="getAmountResponse">
 <part name="parameters" element="tns:getAmountResponse" />
 </message>
-<message name="isExists">
-<part name="parameters" element="tns:isExists" />
-</message>
-<message name="isExistsResponse">
-<part name="parameters" element="tns:isExistsResponse" />
-</message>
 <message name="charge">
 <part name="parameters" element="tns:charge" />
 </message>
 <message name="chargeResponse">
 <part name="parameters" element="tns:chargeResponse" />
+</message>
+<message name="isExists">
+<part name="parameters" element="tns:isExists" />
+</message>
+<message name="isExistsResponse">
+<part name="parameters" element="tns:isExistsResponse" />
 </message>
 <message name="getAllCreditCard">
 <part name="parameters" element="tns:getAllCreditCard" />
@@ -43,13 +43,13 @@
 <input wsam:Action="http://services.bank.com/NewWebService/getAmountRequest" message="tns:getAmount" />
 <output wsam:Action="http://services.bank.com/NewWebService/getAmountResponse" message="tns:getAmountResponse" />
 </operation>
-<operation name="isExists">
-<input wsam:Action="http://services.bank.com/NewWebService/isExistsRequest" message="tns:isExists" />
-<output wsam:Action="http://services.bank.com/NewWebService/isExistsResponse" message="tns:isExistsResponse" />
-</operation>
 <operation name="charge">
 <input wsam:Action="http://services.bank.com/NewWebService/chargeRequest" message="tns:charge" />
 <output wsam:Action="http://services.bank.com/NewWebService/chargeResponse" message="tns:chargeResponse" />
+</operation>
+<operation name="isExists">
+<input wsam:Action="http://services.bank.com/NewWebService/isExistsRequest" message="tns:isExists" />
+<output wsam:Action="http://services.bank.com/NewWebService/isExistsResponse" message="tns:isExistsResponse" />
 </operation>
 <operation name="getAllCreditCard">
 <input wsam:Action="http://services.bank.com/NewWebService/getAllCreditCardRequest" message="tns:getAllCreditCard" />
@@ -76,7 +76,7 @@
 <soap:body use="literal" />
 </output>
 </operation>
-<operation name="isExists">
+<operation name="charge">
 <soap:operation soapAction="" />
 <input>
 <soap:body use="literal" />
@@ -85,7 +85,7 @@
 <soap:body use="literal" />
 </output>
 </operation>
-<operation name="charge">
+<operation name="isExists">
 <soap:operation soapAction="" />
 <input>
 <soap:body use="literal" />
