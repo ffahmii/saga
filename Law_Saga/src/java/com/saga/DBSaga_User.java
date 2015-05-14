@@ -119,9 +119,9 @@ public class DBSaga_User {
     }
     
      // Set amount for users
-    private boolean setAmount(String username, String cardNumber, double add){
+    public boolean setAmount(String username, double add){
         double amountNow = getAmount(username) + add;
-        String query = "UPDATE saga_user SET pengeluaran=" + amountNow + " WHERE CCN='" + cardNumber + "'";
+        String query = "UPDATE saga_user SET pengeluaran=" + amountNow + " WHERE CCN='" + getCreditCard(username) + "'";
         int success = 0;
         try {
             success = stmt.executeUpdate(query);

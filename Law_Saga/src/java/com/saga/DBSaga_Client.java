@@ -108,6 +108,17 @@ public class DBSaga_Client {
         return success == 1;
     }
     
+    // For webservices
+    public boolean chargeCard(String gameId, String username, double amount){
+        String cardNumber = (new DBSaga_User()).getCreditCard(username);
+        int hasil = charge(cardNumber, amount);
+        if (hasil == -1 || hasil == -2 || hasil == 0){
+            return true;
+        } 
+        return (new DBSaga_User()).setAmount(username, amount) && setAmountForGame(gameId, amount);
+    }
+    
+    
     public ArrayList<Client> getClientDetails(String gameId){
         String query = String.format("SELECT * from saga_client where game_id='%s'", gameId);
         ArrayList<Client> arr = new ArrayList<Client>();
