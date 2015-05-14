@@ -6,7 +6,8 @@
 
 package com.saga.handler;
 
-import com.saga.Database;
+
+import com.saga.DBSaga_User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -29,7 +30,7 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
             
-            Database db = new Database();
+            DBSaga_User db = new DBSaga_User();
 
 		// get request parameters for userID and password
 		String user = request.getParameter("username");

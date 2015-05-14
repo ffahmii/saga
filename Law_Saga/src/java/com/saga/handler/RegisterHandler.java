@@ -6,7 +6,8 @@ package com.saga.handler;
  * and open the template in the editor.
  */
 
-import com.saga.Database;
+import com.saga.DBSaga_User;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -41,7 +42,7 @@ public class RegisterHandler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Database db = new Database();
+        DBSaga_User db = new DBSaga_User();
         if(db.addNewUser(request.getParameter("username"), request.getParameter("password"), request.getParameter("ccn")
                 ,request.getParameter("email"),request.getParameter("tlp"), request.getParameter("alamat"))){
             response.sendRedirect("login.jsp");

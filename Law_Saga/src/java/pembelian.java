@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-import com.saga.Database;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
@@ -48,11 +48,7 @@ public class pembelian extends HttpServlet {
         int seconds = calendar.get(Calendar.SECOND);
         SimpleDateFormat dmyFormat = new SimpleDateFormat("yyyy-MM-dd");
         String date = dmyFormat.format(myDate) + " " + hours+":"+minutes+":"+seconds;
-        Database db = new Database();
-        out.print("Add to log user  = " + db.addToLogBuyer(username, idGame, date, item, amount));
-        out.print("<br>Add to log client  = " + db.addToLogClient(idGame, username));
-        out.print("<br>Charge to bank = " +db.chargeCard(idGame, username, amount));
-        response.sendRedirect("gundule.jsp");
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
