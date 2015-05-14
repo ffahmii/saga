@@ -4,7 +4,12 @@
  * and open the template in the editor.
  */
 
+<<<<<<< HEAD
 
+=======
+import com.saga.DBLog;
+import com.saga.Database;
+>>>>>>> 85858baee65ceb44de0366e6d2e4022fa2c2fc61
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
@@ -36,6 +41,7 @@ public class pembelian extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        
         String idGame = request.getParameter("gameId");
         double amount = Double.parseDouble(request.getParameter("amount"));
         String username = request.getParameter("username");
@@ -49,6 +55,13 @@ public class pembelian extends HttpServlet {
         SimpleDateFormat dmyFormat = new SimpleDateFormat("yyyy-MM-dd");
         String date = dmyFormat.format(myDate) + " " + hours+":"+minutes+":"+seconds;
         
+<<<<<<< HEAD
+=======
+        DBLog db = new DBLog();
+        out.print("Add to log user  = " + db.addLog(username, idGame, date, item, amount));
+        out.print("<br>Charge to bank = " +db.chargeCard(idGame, username, amount));
+        response.sendRedirect("gundule.jsp");
+>>>>>>> 85858baee65ceb44de0366e6d2e4022fa2c2fc61
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

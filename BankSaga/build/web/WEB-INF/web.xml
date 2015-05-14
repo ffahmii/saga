@@ -4,13 +4,13 @@
         <listener-class>com.sun.xml.ws.transport.http.servlet.WSServletContextListener</listener-class>
     </listener>
     <servlet>
-        <servlet-name>NewWebService</servlet-name>
+        <servlet-name>BankWebServices</servlet-name>
         <servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
-        <servlet-name>NewWebService</servlet-name>
-        <url-pattern>/NewWebService</url-pattern>
+        <servlet-name>BankWebServices</servlet-name>
+        <url-pattern>/BankWebServices</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
