@@ -4,10 +4,12 @@
     Author     : Hansel
 --%>
 
+<%@page import="com.saga.DBLog"%>
+<%@page import="com.saga.DBSaga_User"%>
+<%@page import="com.saga.DBSaga_Client"%>
 <%@page import="com.saga.BuyerLog"%>
 <%@page import="com.saga.User"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.saga.Database"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -51,12 +53,14 @@
         <font color="red">You Already Logged In</font>
     <%
             }
-            Database d = new Database();
-            ArrayList<User> u = d.getUserDetails(userName);
-            ArrayList<BuyerLog> ul = d.getLogBuyerList(userName);
+            DBSaga_Client dbClient = new DBSaga_Client();
+            DBSaga_User dbUser = new DBSaga_User();
+            DBLog dbLog = new DBLog();
+            ArrayList<User> u = dbUser.getUserDetails(userName);
+            ArrayList<BuyerLog> ul = dbLog.getLogBuyerList(userName);
             User ud = u.get(0);
-            ArrayList<String> gameId = d.getGameIdPlayedByBuyer(userName);
-            ArrayList<ArrayList<BuyerLog>> daftar = d.getSeparatedLogBuyer(userName);
+            ArrayList<String> gameId = dbLog.getGameIdPlayedByBuyer(userName);
+            ArrayList<ArrayList<BuyerLog>> daftar = dbLog.getSeparatedLogBuyer(userName);
         %>
 
 
@@ -83,7 +87,7 @@
 ////                                out.print("Nama game = " + arrLog.get(0).getGameName());
 //                                out.print("<p class='submit'><button>"+d.getGameName(arrLog.get(0).getGameName()+"</button></p>"));
                                 out.print("<button class='submit' onClick='$(\"#" + i + "\").slideToggle()'>View details " 
-                                        + d.getGameName(arrLog.get(0).getGameName()) + "</button>");
+                                        + dbClient.getGameName(arrLog.get(0).getGameName()) + "</button>");
                                 out.print("<div hidden id='" + i + "'>");
                                 for (BuyerLog usLog : arrLog) {
                                     out.print("<br>Pembelian untuk item = " + usLog.getItemName());
@@ -101,9 +105,9 @@
                             String categories = "[";
                             for (int j = 0; j < gameId.size(); j++){
                                 if (j == gameId.size() - 1) {
-                                    categories += "'" + d.getGameName(gameId.get(j)) + "'";
+                                    categories += "'" + dbClient.getGameName(gameId.get(j)) + "'";
                                 } else {
-                                    categories += "'" + d.getGameName(gameId.get(j)) + "',";
+                                    categories += "'" + dbClient.getGameName(gameId.get(j)) + "',";
                                 }
                             }
                             categories += "]";

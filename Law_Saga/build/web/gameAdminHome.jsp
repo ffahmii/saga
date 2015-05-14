@@ -4,12 +4,14 @@
     Author     : Hansel
 --%>
 
+<%@page import="com.saga.DBSaga_User"%>
+<%@page import="com.saga.DBLog"%>
+<%@page import="com.saga.DBSaga_Client"%>
 <%@page import="com.saga.Client"%>
 <%@page import="com.saga.ClientLog"%>
 <%@page import="com.saga.BuyerLog"%>
 <%@page import="com.saga.User"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.saga.Database"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -55,10 +57,12 @@
         <font color="red">You Already Logged In</font>
         <%
             }
-            Database d = new Database();
-            ArrayList<User> u = d.getUserDetails(userName);
-            ArrayList<Client> c = d.getClientDetails("g1");
-            ArrayList<ClientLog> cl = d.getLogClientList("g1");
+            DBSaga_Client dbClient = new DBSaga_Client();
+            DBSaga_User dbUser = new DBSaga_User();
+            DBLog dbLog = new DBLog();
+            ArrayList<User> u = dbUser.getUserDetails(userName);
+            ArrayList<Client> c = dbClient.getClientDetails("g1");
+            ArrayList<ClientLog> cl = dbLog.getLogClientList("g1");
             User ud = u.get(0);
             Client client = c.get(0);
         %>

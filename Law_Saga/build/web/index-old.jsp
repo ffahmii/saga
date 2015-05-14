@@ -4,9 +4,9 @@
     Author     : Fahmi
 --%>
 
+<%@page import="com.saga.DBSaga_User"%>
 <%@page import="com.saga.User"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.saga.Database"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -22,7 +22,7 @@
                 <td>Saldo</td>
             </tr>
         <%
-            Database x = new Database();
+            DBSaga_User x = new DBSaga_User();
             ArrayList<User> arr = x.getAllUser();
             for(User a : arr){
         %>
@@ -59,13 +59,7 @@
             }
         if (card != null){
             try {
-                com.bank.services.NewWebService_Service service = new com.bank.services.NewWebService_Service();
-                com.bank.services.NewWebService port = service.getNewWebServicePort();
-                java.lang.String cardNumber = card;
-                java.lang.Boolean result = port.isExists(cardNumber);
-                java.lang.Integer hasil = port.charge(card, amount);
-                out.println(hasil);
-                response.sendRedirect("index.jsp");
+                
             } catch (Exception ex) {
                 
             }

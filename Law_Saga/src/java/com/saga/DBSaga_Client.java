@@ -39,9 +39,9 @@ public class DBSaga_Client {
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
             stmt = conn.createStatement();
         } catch (SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DBSaga_Client.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DBSaga_Client.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -50,14 +50,14 @@ public class DBSaga_Client {
             try {
                 stmt.close();
             } catch (SQLException ex) {
-                Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DBSaga_Client.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         if (conn != null) {
             try {
                 conn.close();
             } catch (SQLException ex) {
-                Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DBSaga_Client.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -72,7 +72,7 @@ public class DBSaga_Client {
                 result = res.getString(1);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DBSaga_Client.class.getName()).log(Level.SEVERE, null, ex);
         }
         return result;
     }
@@ -87,7 +87,7 @@ public class DBSaga_Client {
                 result = res.getString(1);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DBSaga_Client.class.getName()).log(Level.SEVERE, null, ex);
         }
         return result;
     }
@@ -103,7 +103,7 @@ public class DBSaga_Client {
                 result = res.getDouble(1);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DBSaga_Client.class.getName()).log(Level.SEVERE, null, ex);
         }
         return result;
     }
@@ -116,7 +116,7 @@ public class DBSaga_Client {
         try {
             success = stmt.executeUpdate(query);
         } catch (SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DBSaga_Client.class.getName()).log(Level.SEVERE, null, ex);
         }
         return success == 1;
     }
@@ -144,7 +144,7 @@ public class DBSaga_Client {
                 arr.add(cc);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DBSaga_Client.class.getName()).log(Level.SEVERE, null, ex);
         }
         return arr;
     }
@@ -160,7 +160,7 @@ public class DBSaga_Client {
                 sortedClient.add(client);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DBSaga_Client.class.getName()).log(Level.SEVERE, null, ex);
         }
         return sortedClient;
     }

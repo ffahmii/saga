@@ -4,9 +4,9 @@
     Author     : Hansel
 --%>
 
+<%@page import="com.saga.DBSaga_User"%>
 <%@page import="com.saga.User"%>
 <%@page import="com.sun.istack.logging.Logger"%>
-<%@page import="com.saga.Database"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -21,7 +21,7 @@
                 response.sendRedirect("login.jsp?status=notLoggedIn");
                 return;
             }
-            Database db = new Database();
+            DBSaga_User db = new DBSaga_User();
             String username = (String) session.getAttribute("sessionUser");
             User user = db.getUserDetail(username);
         %>

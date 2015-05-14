@@ -4,9 +4,9 @@
     Author     : Fahmi
 --%>
 
+<%@page import="com.saga.DBSaga_User"%>
 <%@page import="com.saga.User"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.saga.Database"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -47,7 +47,7 @@
                 </tr>
             </thead>
             <%
-                Database x = new Database();
+                DBSaga_User x = new DBSaga_User();
                 ArrayList<User> arr = x.getAllUser();
                 for (User a : arr) {
             %>

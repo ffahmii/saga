@@ -47,9 +47,9 @@ public class DBLog {
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
             stmt = conn.createStatement();
         } catch (SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DBLog.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DBLog.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -58,14 +58,14 @@ public class DBLog {
             try {
                 stmt.close();
             } catch (SQLException ex) {
-                Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DBLog.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         if (conn != null) {
             try {
                 conn.close();
             } catch (SQLException ex) {
-                Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DBLog.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -77,7 +77,7 @@ public class DBLog {
         try {
             res = getStatement().executeUpdate(query);
         } catch (SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DBLog.class.getName()).log(Level.SEVERE, null, ex);
         }
         return res == 1;
     }
@@ -97,7 +97,7 @@ public class DBLog {
                 arr.add(cc);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DBLog.class.getName()).log(Level.SEVERE, null, ex);
         }
         return arr;
     }
@@ -117,7 +117,7 @@ public class DBLog {
                 arr.add(cl);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DBLog.class.getName()).log(Level.SEVERE, null, ex);
         }
         return arr;
     }

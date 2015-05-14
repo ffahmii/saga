@@ -4,9 +4,9 @@
     Author     : Hansel
 --%>
 
+<%@page import="com.saga.DBSaga_Client"%>
 <%@page import="com.saga.Client"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.saga.Database"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -26,7 +26,7 @@
                     response.sendRedirect("login.jsp?status=notLoggedIn");
                     return;
                 }
-                Database db = new Database();
+                DBSaga_Client db = new DBSaga_Client();
                 int rank = 1;
                 ArrayList<Client> sortedClient = db.getSortedClientBySale();
             %>
