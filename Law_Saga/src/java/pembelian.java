@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import com.saga.DBLog;
 import com.saga.Database;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -36,6 +37,7 @@ public class pembelian extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        
         String idGame = request.getParameter("gameId");
         double amount = Double.parseDouble(request.getParameter("amount"));
         String username = request.getParameter("username");
@@ -48,9 +50,9 @@ public class pembelian extends HttpServlet {
         int seconds = calendar.get(Calendar.SECOND);
         SimpleDateFormat dmyFormat = new SimpleDateFormat("yyyy-MM-dd");
         String date = dmyFormat.format(myDate) + " " + hours+":"+minutes+":"+seconds;
-        Database db = new Database();
-        out.print("Add to log user  = " + db.addToLogBuyer(username, idGame, date, item, amount));
-        out.print("<br>Add to log client  = " + db.addToLogClient(idGame, username));
+        
+        DBLog db = new DBLog();
+        out.print("Add to log user  = " + db.addLog(username, idGame, date, item, amount));
         out.print("<br>Charge to bank = " +db.chargeCard(idGame, username, amount));
         response.sendRedirect("gundule.jsp");
     }

@@ -30,6 +30,9 @@ public class DBLog {
     static final String cHarga = "harga";
     static final String cGameId = "game_id";
 
+    public DBLog(){
+        
+    }
     public Connection getConnection() {
         return conn;
     }
@@ -58,7 +61,6 @@ public class DBLog {
                 Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
         if (conn != null) {
             try {
                 conn.close();
@@ -80,6 +82,9 @@ public class DBLog {
         return res == 1;
     }
     
+    /*
+    Mendapatkan kumpulan log dari seorang user
+    */
     public ArrayList<BuyerLog> getLogBuyerList(String username){
         String query = "SELECT * from `"+table_name+"` where username='"+username+"'";
         ArrayList<BuyerLog> arr = new ArrayList<BuyerLog>();
@@ -90,6 +95,26 @@ public class DBLog {
                 BuyerLog cc = new BuyerLog(res.getString(cUsername), res.getInt(cId), 
                         res.getDate(cTime), res.getString(cGameId), res.getString(cItem) , res.getDouble(cHarga)) ;
                 arr.add(cc);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return arr;
+    }
+    
+    /*
+    Mendapatkan kumpulan log dari sebuah game
+    */
+    public ArrayList<ClientLog> getLogClientList(String gameId){
+        String query = "SELECT * from `"+table_name+"` where game_id='"+gameId+"'";
+        ArrayList<ClientLog> arr = new ArrayList<ClientLog>();
+        openConnection();
+        try {
+            ResultSet res = stmt.executeQuery(query);
+            while(res.next()){
+                BuyerLog cc = new BuyerLog(res.getString(cUsername), res.getInt(cId), res.getDate(cTime), gameId, res.getString(cItem), res.getDouble(cHarga));
+                ClientLog cl = new ClientLog(res.getString("game_id"), res.getInt("client_log_id"), cc);
+                arr.add(cl);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
@@ -131,25 +156,4 @@ public class DBLog {
         }
         return result;
     }
-    
-    /*
-    Mendapatkan sebuah objek user log
-    */
-    public ArrayList<ClientLog> getLogClientList(String gameId){
-        String query = "SELECT * from `"+table_name+"` where game_id='"+gameId+"'";
-        ArrayList<ClientLog> arr = new ArrayList<ClientLog>();
-        openConnection();
-        try {
-            ResultSet res = stmt.executeQuery(query);
-            while(res.next()){
-                BuyerLog cc = new BuyerLog(res.getString(cUsername), res.getInt(cId), res.getDate(cTime), gameId, res.getString(cItem), res.getDouble(cHarga));
-                ClientLog cl = new ClientLog(res.getString("game_id"), res.getInt("client_log_id"), cc);
-                arr.add(cl);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return arr;
-    }
-
 }

@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  *
  * @author Fahmi
  */
-public class ToDatabase {
+public class BankDatabase {
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     static final String DB_URL = "jdbc:mysql://localhost/bank";
     static final String USER = "root";
@@ -28,9 +28,9 @@ public class ToDatabase {
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
             stmt = conn.createStatement();
         } catch (SQLException ex) {
-            Logger.getLogger(ToDatabase.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BankDatabase.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ToDatabase.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BankDatabase.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -39,7 +39,7 @@ public class ToDatabase {
             try {
                 stmt.close();
             } catch (SQLException ex) {
-                Logger.getLogger(ToDatabase.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(BankDatabase.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         
@@ -47,7 +47,7 @@ public class ToDatabase {
             try {
                 conn.close();
             } catch (SQLException ex) {
-                Logger.getLogger(ToDatabase.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(BankDatabase.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -63,7 +63,7 @@ public class ToDatabase {
                 arr.add(cc);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ToDatabase.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BankDatabase.class.getName()).log(Level.SEVERE, null, ex);
         }
         return arr;
     }
@@ -79,10 +79,10 @@ public class ToDatabase {
         try {
             ResultSet res = stmt.executeQuery(query);
             while(res.next()){
-                exist = res.getInt(1) == 1 ? true : false;
+                exist = res.getInt(1) == 1;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ToDatabase.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BankDatabase.class.getName()).log(Level.SEVERE, null, ex);
         }
         return exist;
     }
@@ -97,7 +97,7 @@ public class ToDatabase {
                 active = res.getBoolean("status") ? "Ya" : "Tidak";
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ToDatabase.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BankDatabase.class.getName()).log(Level.SEVERE, null, ex);
         }
         return active;
     }
@@ -112,10 +112,11 @@ public class ToDatabase {
                 limit = res.getDouble(1);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ToDatabase.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BankDatabase.class.getName()).log(Level.SEVERE, null, ex);
         }
         return limit;
     }
+    
     public String getGrade(String card){
         String grade = "";
         String query = "SELECT grade from kredit_card where cardNumber='"+card+"'";
@@ -126,14 +127,13 @@ public class ToDatabase {
                 grade = res.getString(1);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ToDatabase.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BankDatabase.class.getName()).log(Level.SEVERE, null, ex);
         }
         return grade;
     }
     
-    public double getAmount(String card){
+    public double getAmount(String query){
         double amount = 0;
-        String query = "SELECT amount from kredit_card where cardNumber='"+card+"'";
         openConnection();
         try {
             ResultSet res = stmt.executeQuery(query);
@@ -141,7 +141,7 @@ public class ToDatabase {
                 amount = res.getDouble(1);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ToDatabase.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BankDatabase.class.getName()).log(Level.SEVERE, null, ex);
         }
         return amount;
     }
@@ -150,18 +150,50 @@ public class ToDatabase {
         if (amount < 0){
             return -1;
         }
-        double amountNow = amount+getAmount(cardNumber);
+        String query = "SELECT amount from kredit_card where cardNumber='"+cardNumber+"'";
+        double amountNow = amount+getAmount(query);
         double limit = getLimit(cardNumber);
         if (amountNow > limit){
             return -2;
         }
-        String query = "UPDATE kredit_card SET amount=" + amountNow + " WHERE cardNumber='" + cardNumber + "'";
+        query = "UPDATE kredit_card SET amount=" + amountNow + " WHERE cardNumber='" + cardNumber + "'";
         int success = 0;
         try {
             success = stmt.executeUpdate(query);
         } catch (SQLException ex) {
-            Logger.getLogger(ToDatabase.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BankDatabase.class.getName()).log(Level.SEVERE, null, ex);
         }
         return success;
+    }
+    
+    public boolean deposit(String rek_number, double amount){
+        if (amount < 0){
+            return false;
+        }
+        String query = "SELECT saldo from rekening where rekening_number='"+rek_number+"'";
+        double amountNow = amount+getAmount(query);
+        query = "UPDATE rekening SET saldo=" + amountNow + " WHERE rekening_number='" + rek_number + "'";
+        int success = 0;
+        try {
+            success = stmt.executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(BankDatabase.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return true;
+    }
+    
+    public boolean witdraw(String rek_number, double amount){
+        if (amount < 0){
+            return false;
+        }
+        String query = "SELECT saldo from rekening where rekening_number='"+rek_number+"'";
+        double amountNow = getAmount(query)-amount;
+        query = "UPDATE rekening SET saldo=" + amountNow + " WHERE rekening_number='" + rek_number + "'";
+        try {
+            stmt.executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(BankDatabase.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return true;
     }
 }

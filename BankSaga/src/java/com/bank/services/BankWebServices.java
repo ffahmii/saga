@@ -6,7 +6,7 @@
 package com.bank.services;
 
 import com.bank.CreditCard;
-import com.bank.ToDatabase;
+import com.bank.BankDatabase;
 import java.util.List;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
@@ -16,15 +16,15 @@ import javax.jws.WebParam;
  *
  * @author Fahmi
  */
-@WebService(serviceName = "NewWebService")
-public class NewWebService {
+@WebService(serviceName = "BankWebServices")
+public class BankWebServices {
 
     /**
      * Web service operation
      */
     @WebMethod(operationName = "getAllCreditCard")
     public List<CreditCard> getAllCreditCard() {
-        ToDatabase db = new ToDatabase();
+        BankDatabase db = new BankDatabase();
         return db.getAllCreditCard();
     }
 
@@ -33,7 +33,7 @@ public class NewWebService {
      */
     @WebMethod(operationName = "isValid")
     public Boolean isValid(@WebParam(name = "cardNumber") String cardNumber) {
-        ToDatabase db = new ToDatabase();
+        BankDatabase db = new BankDatabase();
         return db.isValid(cardNumber);
     }
 
@@ -42,7 +42,7 @@ public class NewWebService {
      */
     @WebMethod(operationName = "isExists")
     public Boolean isExists(@WebParam(name = "cardNumber") String cardNumber) {
-        ToDatabase db = new ToDatabase();
+        BankDatabase db = new BankDatabase();
         return db.isExist(cardNumber);
     }
 
@@ -51,7 +51,7 @@ public class NewWebService {
      */
     @WebMethod(operationName = "charge")
     public int charge(@WebParam(name = "cardNumber") String cardNumber, @WebParam(name = "amount") double amount) {
-        ToDatabase db = new ToDatabase();
+        BankDatabase db = new BankDatabase();
         return db.charge(cardNumber, amount);
     }
 
@@ -60,7 +60,25 @@ public class NewWebService {
      */
     @WebMethod(operationName = "getAmount")
     public double getAmount(@WebParam(name = "cardNumber") String cardNumber) {
-        ToDatabase db = new ToDatabase();
+        BankDatabase db = new BankDatabase();
         return db.getAmount(cardNumber);
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "deposit")
+    public Boolean deposit(@WebParam(name = "rek_number") String rek_number, @WebParam(name = "amount") double amount) {
+        BankDatabase db = new BankDatabase();
+        return db.deposit(rek_number, amount);
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "witdraw")
+    public Boolean witdraw(@WebParam(name = "rek_number") String rek_number, @WebParam(name = "amount") double amount) {
+        BankDatabase db = new BankDatabase();
+        return db.witdraw(rek_number, amount);
     }
 }
