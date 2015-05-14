@@ -7,6 +7,10 @@ package com.saga.handler;
  */
 
 import com.saga.DBSaga_User;
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -41,7 +45,11 @@ public class RegisterHandler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+<<<<<<< HEAD
          DBSaga_User db = new DBSaga_User();
+=======
+        DBSaga_User db = new DBSaga_User();
+>>>>>>> origin/master
         if(db.addNewUser(request.getParameter("username"), request.getParameter("password"), request.getParameter("ccn")
                 ,request.getParameter("email"),request.getParameter("tlp"), request.getParameter("alamat"))){
             response.sendRedirect("login.jsp");

@@ -4,8 +4,16 @@
  * and open the template in the editor.
  */
 
+<<<<<<< HEAD
+
+=======
 import com.saga.DBLog;
+<<<<<<< HEAD
 import com.saga.DBSaga_Client;
+=======
+import com.saga.Database;
+>>>>>>> 85858baee65ceb44de0366e6d2e4022fa2c2fc61
+>>>>>>> origin/master
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
@@ -49,14 +57,22 @@ public class pembelian extends HttpServlet {
         int minutes = calendar.get(Calendar.MINUTE);
         int seconds = calendar.get(Calendar.SECOND);
         SimpleDateFormat dmyFormat = new SimpleDateFormat("yyyy-MM-dd");
+<<<<<<< HEAD
         String date = dmyFormat.format(myDate) + " " + hours + ":" + minutes + ":" + seconds;
 
+=======
+        String date = dmyFormat.format(myDate) + " " + hours+":"+minutes+":"+seconds;
+        
+<<<<<<< HEAD
+=======
+>>>>>>> origin/master
         DBLog db = new DBLog();
         out.print("Add to log user  = " + db.addLog(username, idGame, date, item, amount));
 
         DBSaga_Client dbClient = new DBSaga_Client();
         dbClient.chargeCard(idGame, username, amount);
         response.sendRedirect("gundule.jsp");
+>>>>>>> 85858baee65ceb44de0366e6d2e4022fa2c2fc61
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
